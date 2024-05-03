@@ -1,9 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const router = require("./routes/users");
 const app = express();
 
+require('dotenv').config()
+
+const password = process.env.PASSWORD
+const username = process.env.USERNAME
+
+
 mongoose
-  .connect(`mongodb+srv://mrinalbitsat:CnnFuTFZcnCon59O@cluster0.eu3h9ef.mongodb.net/`)
+  .connect(`mongodb+srv://${username}:${password}@cluster0.eu3h9ef.mongodb.net/`)
   .then(() => console.log("Db connected successfully"))
   .catch((e) => console.log(e));
 
