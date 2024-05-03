@@ -63,7 +63,7 @@ const userController = {
 
   //Profile
   profile: asyncHandler(async (req, res) => {
-    const user = await User.findById('').select("-password") // to not give the password field
+    const user = await User.findById(req.user).select("-password"); // to not give the password field
     res.json({ user });
   }),
 };
