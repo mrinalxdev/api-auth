@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = require("./routes/users");
+const errHandler = require("./middlewares/errHandler");
 const app = express();
 
 require("dotenv").config();
@@ -20,6 +21,9 @@ mongoose
 
 //Routes
 app.use("/", router);
+
+app.use(errHandler);
+
 const PORT = 8000;
 
 app.listen(PORT, console.log(`Server is running`));
