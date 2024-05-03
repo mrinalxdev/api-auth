@@ -3,20 +3,23 @@ const mongoose = require("mongoose");
 const router = require("./routes/users");
 const app = express();
 
-require('dotenv').config()
+require("dotenv").config();
 
-const password = process.env.PASSWORD
-const username = process.env.USERNAME
+const password = process.env.PASSWORD;
+const username = process.env.USERNAME;
 
+//Middlewares
+app.use(express.json());
 
 mongoose
-  .connect(`mongodb+srv://${username}:${password}@cluster0.eu3h9ef.mongodb.net/`)
+  .connect(
+    `mongodb+srv://${username}:${password}@cluster0.eu3h9ef.mongodb.net/`
+  )
   .then(() => console.log("Db connected successfully"))
   .catch((e) => console.log(e));
 
-
-  //Routes
-  app.use('/', router);
+//Routes
+app.use("/", router);
 const PORT = 8000;
 
 app.listen(PORT, console.log(`Server is running`));
